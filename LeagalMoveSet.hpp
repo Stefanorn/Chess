@@ -14,7 +14,8 @@
 class LeagalMoveSet {
     
 public:
-    LeagalMoveSet();
+    
+    
 private:
 };
 

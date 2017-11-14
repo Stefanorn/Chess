@@ -15,16 +15,16 @@
 
 using namespace std;
 
-class ChessPieces{
+class ChessPieces {
 public:
-
-    ChessPieces( char icon,
-                LeagalMoveSet moves,
-                int xPlacement,
-                int yPlacement);
+    char GetIcon();
+    int GetXPos(); //væri hægt að sameina þetta í vector2
+    int GetYPos();
+    ChessPieces();
+    void initPiece( char icon, int xPlace, int yPlace);
 private:
     char _icon;
-    LeagalMoveSet moves;
+    LeagalMoveSet _moves;
     int _xPlacement;
     int _yPlacement;
 };

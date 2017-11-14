@@ -22,8 +22,12 @@ public:
     friend ostream& operator << (ostream& out, const ChessBoard& board);
     void makeMove();
 private:
-    void FillTheBoard();
+    void DrawTheBoard();
+    void InitializePieces();
+    void AddPiesesToBoard();
     char _board[10][10];
+    ChessPieces _blackPieces[17];
+    ChessPieces _whitePieces[17];
 };
 
 #endif /* ChessBoard_hpp */
