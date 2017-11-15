@@ -15,11 +15,45 @@
 ////////////////////////////////////////////////////////////////////////////////////
 
 ChessBoard::ChessBoard(){
+    playerTurn = White;
     DrawTheBoard();
     InitializePieces();
     AddPiesesToBoard();
 }
 
+bool ChessBoard::makeMove( BoardPosition from, BoardPosition to ){
+    
+    if (playerTurn == White) {
+        for(int i = 0; i < 17; i++){
+            if(_whitePieces[i]._position == from){
+                _whitePieces[i]._position = to;
+                UpdateBoard();
+                return true;
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < 17; i++){
+            if(_blackPieces[i]._position == from){
+                _blackPieces[i]._position = to;
+                UpdateBoard();
+                return true;
+            }
+        }
+
+    }
+    
+    return false;
+}
+
+string ChessBoard::WhosTurn(){
+    if(playerTurn == White){
+        return "white";
+    }
+    else{
+        return "black";
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////OPERATOR OVERWRITE//////////////////////////////////////////
@@ -41,14 +75,25 @@ ostream& operator << (ostream& out, const ChessBoard& board){
 ////////////////////////PRIVATE FÖLL////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
+void ChessBoard::UpdateBoard(){
+    if(playerTurn == White){
+        playerTurn = Black;
+    }
+    else{
+        playerTurn = White;
+    }
+    DrawTheBoard();
+    AddPiesesToBoard();
+}
+
 void ChessBoard::AddPiesesToBoard(){
     for (int i = 0; i < 16; i++) {
-        _board[ _blackPieces[i].GetYPos()]
-        [ _blackPieces[i].GetXPos() ] = _blackPieces[i].GetIcon();
+        _board[ _blackPieces[i]._position.GetYPos()]
+        [ _blackPieces[i]._position.GetXPos() ] = _blackPieces[i].GetIcon();
     }
     for (int i = 0; i < 16; i++) {
-        _board[ _whitePieces[i].GetYPos()]
-        [ _whitePieces[i].GetXPos()] = _whitePieces[i].GetIcon();
+        _board[ _whitePieces[i]._position.GetYPos()]
+        [ _whitePieces[i]._position.GetXPos()] = _whitePieces[i].GetIcon();
     }
 }
 
@@ -83,7 +128,7 @@ void ChessBoard::InitializePieces(){
 
 void ChessBoard::DrawTheBoard(){
     
-    bool isBlack = true; // ætti ferakr að vera colorChanger
+    bool colorChanger = true;
     char blackPice = '#';
     char whitePice = ' ';
     char sideBoarders[8] = {'8', '7', '6', '5','4','3','2','1'}; 
@@ -97,20 +142,20 @@ void ChessBoard::DrawTheBoard(){
             else if(j == 0){ //|| j == 9
                 _board[i][j] = sideBoarders[i-1];
             }
-            else if(isBlack){
+            else if(colorChanger){
                 _board[i][j] = blackPice;
-                isBlack = false;
+                colorChanger = false;
             }
             else{
                 _board[i][j] = whitePice;
-                isBlack = true;
+                colorChanger = true;
             }
         }
-        if(isBlack){
-            isBlack = false;
+        if(colorChanger){
+            colorChanger = false;
         }
         else{
-            isBlack = true;
+            colorChanger = true;
         }
     }
     

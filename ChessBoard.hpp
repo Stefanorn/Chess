@@ -16,18 +16,26 @@
 
 using namespace std;
 
+enum PlayerTurn { White, Black };
+
 class ChessBoard {
 public:
     ChessBoard();
     friend ostream& operator << (ostream& out, const ChessBoard& board);
-    void makeMove();
+    bool makeMove( BoardPosition from, BoardPosition to );
+    string WhosTurn();
 private:
+    
+    void UpdateBoard();
+    PlayerTurn playerTurn;
     void DrawTheBoard();
     void InitializePieces();
     void AddPiesesToBoard();
     char _board[10][10];
     ChessPieces _blackPieces[17];
     ChessPieces _whitePieces[17];
+    
 };
+
 
 #endif /* ChessBoard_hpp */
