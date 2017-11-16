@@ -35,28 +35,26 @@ int BoardPosition::GetYPos() {return _yAxis; }
 
 //
 
-ChessPieces::ChessPieces(){
-    _icon = 'E';
-    _xPlacement = -1;
-    _yPlacement = -1;
+ChessPieces::ChessPieces(char icon, string pos , SuitColor color){
+    _icon = icon;
+    _color = color;
+    _position = BoardPosition(pos);
 }
 
-void ChessPieces::initPiece( char icon, int xPlace, int yPlace){
+ChessPieces::ChessPieces(){
+    _icon = 'E';
+}
+
+void ChessPieces::initPiece( char icon, int xPlace, int yPlace, SuitColor color){
+    _color = color;
     _icon = icon;
-    _xPlacement = xPlace;
-    _yPlacement = yPlace;
     _position = BoardPosition(xPlace, yPlace);
 }
 
-char ChessPieces::GetIcon(){
-    return _icon;
-}
-int ChessPieces::GetXPos(){
-    return _xPlacement;
-}
-int ChessPieces::GetYPos(){
-    return _yPlacement;
-}
+SuitColor ChessPieces::GetColor(){ return _color; }
+char ChessPieces::GetIcon(){ return _icon; }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////Friend Föll ////////////////////////////////////////////////

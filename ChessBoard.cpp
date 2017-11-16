@@ -8,7 +8,7 @@
 
 #include "ChessBoard.hpp"
 
-
+const int MAXPIECES = 17;
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////PUBLIC FÖLL/////////////////////////////////////////////////
@@ -20,11 +20,23 @@ ChessBoard::ChessBoard(){
     InitializePieces();
     AddPiesesToBoard();
 }
+ChessPieces ChessBoard::WhatIsThere( BoardPosition pos ){
+
+    for( int i = 0; i < MAXPIECES ; i++){
+        if(pos == _blackPieces[i]._position){
+            return _blackPieces[i];
+        }
+        if(pos == _whitePieces[i]._position){
+            return _whitePieces[i];
+        }
+    }
+    return ChessPieces('e', "null", null);
+}
 
 bool ChessBoard::makeMove( BoardPosition from, BoardPosition to ){
     
     if (playerTurn == White) {
-        for(int i = 0; i < 17; i++){
+        for(int i = 0; i < MAXPIECES; i++){
             if(_whitePieces[i]._position == from){
                 _whitePieces[i]._position = to;
                 UpdateBoard();
@@ -33,7 +45,7 @@ bool ChessBoard::makeMove( BoardPosition from, BoardPosition to ){
         }
     }
     else{
-        for(int i = 0; i < 17; i++){
+        for(int i = 0; i < MAXPIECES; i++){
             if(_blackPieces[i]._position == from){
                 _blackPieces[i]._position = to;
                 UpdateBoard();
@@ -87,11 +99,11 @@ void ChessBoard::UpdateBoard(){
 }
 
 void ChessBoard::AddPiesesToBoard(){
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < MAXPIECES; i++) {
         _board[ _blackPieces[i]._position.GetYPos()]
         [ _blackPieces[i]._position.GetXPos() ] = _blackPieces[i].GetIcon();
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < MAXPIECES; i++) {
         _board[ _whitePieces[i]._position.GetYPos()]
         [ _whitePieces[i]._position.GetXPos()] = _whitePieces[i].GetIcon();
     }
@@ -99,29 +111,29 @@ void ChessBoard::AddPiesesToBoard(){
 
 void ChessBoard::InitializePieces(){
     
-    _blackPieces[0].initPiece('R', 1, 1);
-    _blackPieces[1].initPiece('N', 2, 1);
-    _blackPieces[2].initPiece('B', 3, 1);
-    _blackPieces[3].initPiece('K', 4, 1);
-    _blackPieces[4].initPiece('Q', 5, 1);
-    _blackPieces[5].initPiece('B', 6, 1);
-    _blackPieces[6].initPiece('N', 7, 1);
-    _blackPieces[7].initPiece('R', 8, 1);
+    _blackPieces[0].initPiece('R', 1, 1, Black);
+    _blackPieces[1].initPiece('N', 2, 1, Black);
+    _blackPieces[2].initPiece('B', 3, 1, Black);
+    _blackPieces[3].initPiece('K', 4, 1, Black);
+    _blackPieces[4].initPiece('Q', 5, 1, Black);
+    _blackPieces[5].initPiece('B', 6, 1, Black);
+    _blackPieces[6].initPiece('N', 7, 1, Black);
+    _blackPieces[7].initPiece('R', 8, 1, Black);
     
-    for(int i = 8; i < 16; i++){
-       _blackPieces[i].initPiece('P', i-7, 2);
+    for(int i = 8; i < MAXPIECES; i++){
+       _blackPieces[i].initPiece('P', i-7, 2, Black);
     }
     
-    _whitePieces[0].initPiece('r', 1, 8);
-    _whitePieces[1].initPiece('n', 2, 8);
-    _whitePieces[2].initPiece('b', 3, 8);
-    _whitePieces[3].initPiece('k', 4, 8);
-    _whitePieces[4].initPiece('q', 5, 8);
-    _whitePieces[5].initPiece('b', 6, 8);
-    _whitePieces[6].initPiece('n', 7, 8);
-    _whitePieces[7].initPiece('r', 8, 8);
-    for(int i = 8; i < 16; i++){
-        _whitePieces[i].initPiece('p', i-7, 7);
+    _whitePieces[0].initPiece('r', 1, 8, White);
+    _whitePieces[1].initPiece('n', 2, 8, White);
+    _whitePieces[2].initPiece('b', 3, 8, White);
+    _whitePieces[3].initPiece('k', 4, 8, White);
+    _whitePieces[4].initPiece('q', 5, 8, White);
+    _whitePieces[5].initPiece('b', 6, 8, White);
+    _whitePieces[6].initPiece('n', 7, 8, White);
+    _whitePieces[7].initPiece('r', 8, 8, White);
+    for(int i = 8; i < MAXPIECES; i++){
+        _whitePieces[i].initPiece('p', i-7, 7, White);
     }
     
 }

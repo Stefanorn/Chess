@@ -34,21 +34,22 @@ private:
     int _yAxis; //1-8
 };
 
+enum SuitColor{Black, White, null};
+
 class ChessPieces {
 public:
-    char GetIcon();
-    int GetXPos(); //væri hægt að sameina þetta í vector2
-    int GetYPos();
     ChessPieces();
-    void initPiece( char icon, int xPlace, int yPlace);
+    ChessPieces(char icon, string place , SuitColor color);
+    void initPiece( char icon, int xPlace, int yPlace, SuitColor color);
+    
+    SuitColor GetColor();
+    char GetIcon();
     BoardPosition _position; //TODO ATH afhverju þetta má ekki vera privet
+                                //Held það skipti ekki máli
 private:
     char _icon;
     LeagalMoveSet _moves;
-  //  BoardPosition _position;
-    
-    int _xPlacement; //TODO eyða þessu
-    int _yPlacement; //TODO eyða þessu
+    SuitColor _color;
 };
 
 #endif /* ChessPieces_hpp */

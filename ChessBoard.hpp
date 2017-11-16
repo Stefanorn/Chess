@@ -16,7 +16,7 @@
 
 using namespace std;
 
-enum PlayerTurn { White, Black };
+//enum PlayerTurn { White, Black };
 
 class ChessBoard {
 public:
@@ -24,10 +24,11 @@ public:
     friend ostream& operator << (ostream& out, const ChessBoard& board);
     bool makeMove( BoardPosition from, BoardPosition to );
     string WhosTurn();
+    ChessPieces WhatIsThere(BoardPosition pos);
 private:
     
     void UpdateBoard();
-    PlayerTurn playerTurn;
+    SuitColor playerTurn;
     void DrawTheBoard();
     void InitializePieces();
     void AddPiesesToBoard();
