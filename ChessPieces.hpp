@@ -26,6 +26,8 @@ public:
     friend bool operator != (const BoardPosition& leftSide, const BoardPosition& rightSide);
     
     void SetBordPosition(char xAxis, char yAxis);
+    
+    BoardPosition Graveyard();
     int GetXPos();
     int GetYPos();
 private:

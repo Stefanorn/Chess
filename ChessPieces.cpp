@@ -27,6 +27,10 @@ BoardPosition::BoardPosition(int xAxis, int yAxis ){
     _yAxis = yAxis;
 }
 
+BoardPosition BoardPosition::Graveyard(){
+    return BoardPosition();
+}
+
 void BoardPosition::SetBordPosition(char xAxis, char yAxis){
     TranslateCharToPos(xAxis, yAxis);
 }

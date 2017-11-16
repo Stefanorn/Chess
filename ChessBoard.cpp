@@ -20,6 +20,9 @@ ChessBoard::ChessBoard(){
     InitializePieces();
     AddPiesesToBoard();
 }
+
+SuitColor ChessBoard::GetColor(){ return playerTurn; }
+
 ChessPieces ChessBoard::WhatIsThere( BoardPosition pos ){
 
     for( int i = 0; i < MAXPIECES ; i++){
@@ -35,26 +38,16 @@ ChessPieces ChessBoard::WhatIsThere( BoardPosition pos ){
 
 bool ChessBoard::makeMove( BoardPosition from, BoardPosition to ){
     
-    if (playerTurn == White) {
         for(int i = 0; i < MAXPIECES; i++){
-            if(_whitePieces[i]._position == from){
+            if(_whitePieces[i]._position == from ){
                 _whitePieces[i]._position = to;
-                UpdateBoard();
                 return true;
             }
-        }
-    }
-    else{
-        for(int i = 0; i < MAXPIECES; i++){
             if(_blackPieces[i]._position == from){
                 _blackPieces[i]._position = to;
-                UpdateBoard();
                 return true;
-            }
         }
-
     }
-    
     return false;
 }
 

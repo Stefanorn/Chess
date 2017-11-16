@@ -21,13 +21,13 @@ using namespace std;
 class ChessBoard {
 public:
     ChessBoard();
+    void UpdateBoard(); //skítaredding vill að þetta gerist sjálkrafa
     friend ostream& operator << (ostream& out, const ChessBoard& board);
     bool makeMove( BoardPosition from, BoardPosition to );
     string WhosTurn();
+    SuitColor GetColor();
     ChessPieces WhatIsThere(BoardPosition pos);
 private:
-    
-    void UpdateBoard();
     SuitColor playerTurn;
     void DrawTheBoard();
     void InitializePieces();

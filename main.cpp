@@ -25,9 +25,34 @@ int main(int argc, const char * argv[]) {
         cout << endl << board;
         cout << board.WhosTurn() << "'s turn select piece ";
         cin >> from;
+        if(from == "exit"){ return 0; }
+        
         cout << "Select position to move to ";
         cin >> to;
-        board.makeMove(from, to);
+        if(to == "exit"){ return 0; }
+        
+        if(BoardPosition(from) == BoardPosition() ||
+           BoardPosition(to) == BoardPosition() ){
+            cout << "incorrect input try for example a2" << endl;
+        }
+        else if(board.WhatIsThere(from).GetColor() == board.GetColor()){
+            if( board.WhatIsThere(to).GetColor() != board.GetColor() ){
+                if( board.makeMove( to , BoardPosition() ) )
+                    cout << "sf";
+                board.makeMove(from, to);
+                board.UpdateBoard();
+            }
+            else if( board.WhatIsThere(to).GetColor() == board.GetColor() ){
+                cout << " illigal move you allreddy have a piece there" << endl;
+            }
+            else{
+                board.makeMove(from, to);
+                board.UpdateBoard();
+            }
+        }
+        else{
+            cout << "illegal move select valid pice" << endl;
+        }
     }
     return 0;
 }
