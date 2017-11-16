@@ -21,7 +21,7 @@ using namespace std;
 class ChessBoard {
 public:
     ChessBoard();
-    void UpdateBoard(); //skítaredding vill að þetta gerist sjálkrafa
+    void UpdateBoard();
     friend ostream& operator << (ostream& out, const ChessBoard& board);
     bool makeMove( BoardPosition from, BoardPosition to );
     string WhosTurn();
