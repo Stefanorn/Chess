@@ -47,6 +47,7 @@ ChessPieces::ChessPieces(char icon, string pos , SuitColor color){
 
 ChessPieces::ChessPieces(){
     _icon = 'E';
+    
 }
 
 void ChessPieces::initPiece( char icon, int xPlace, int yPlace, SuitColor color){

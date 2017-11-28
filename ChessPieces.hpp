@@ -46,8 +46,7 @@ public:
     
     SuitColor GetColor();
     char GetIcon();
-    BoardPosition _position; //TODO ATH afhverju þetta má ekki vera privet
-                                //Held það skipti ekki máli
+    BoardPosition _position; 
 private:
     char _icon;
     LeagalMoveSet _moves;
